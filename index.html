@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="reis">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reis Barbearia · Caldas da Rainha</title>
+  <meta name="description" content="Reis Barbearia — barbearia em Caldas da Rainha. Degradê, taper fade e barba. Marca o teu horário online." />
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- daisyUI 5 + Tailwind CSS 4 (CDN, no build step) -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --color-gold: #fcc83d;
+      --color-ink: #050505;
+      --color-ink-2: #080808;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-display: 'IBM Plex Sans Condensed', sans-serif;
+      --font-num: 'Oswald', sans-serif;
+    }
+    [data-theme="reis"] {
+      color-scheme: dark;
+      --color-base-100: #050505;
+      --color-base-200: #080808;
+      --color-base-300: #101010;
+      --color-base-content: #ffffff;
+      --color-primary: #fcc83d;
+      --color-primary-content: #050505;
+      --radius-field: 0;
+      --radius-box: 0;
+      --radius-selector: 0;
+    }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: #fcc83d; color: #050505; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .hero-slide { opacity: 0; transform: scale(1.04); transition: opacity 1.2s ease, transform 4s ease-out; }
+    .hero-slide.active { opacity: 1; transform: scale(1); }
+    .nav-solid { background: #050505 !important; border-color: rgba(255,255,255,.08) !important; }
+  </style>
+</head>
+
+<body class="bg-ink text-white font-sans">
+
+  <!-- NAVBAR -->
+  <nav id="nav" class="navbar fixed top-0 inset-x-0 z-50 px-5 md:px-16 py-4 bg-transparent border-b border-transparent transition-colors duration-500">
+    <div class="flex-1">
+      <a href="#top" aria-label="Reis Barbearia"><img src="assets/logo.png" alt="Reis Barbearia" class="h-13 w-auto" /></a>
+    </div>
+    <div class="hidden lg:flex items-center gap-10">
+      <a href="#servicos" class="text-[13px] font-semibold tracking-[2px] uppercase hover:text-gold transition-colors">Serviços</a>
+      <a href="#trabalho" class="text-[13px] font-semibold tracking-[2px] uppercase hover:text-gold transition-colors">Trabalho</a>
+      <a href="#avaliacoes" class="text-[13px] font-semibold tracking-[2px] uppercase hover:text-gold transition-colors">Avaliações</a>
+      <a href="#contactos" class="text-[13px] font-semibold tracking-[2px] uppercase hover:text-gold transition-colors">Contactos</a>
+      <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="btn btn-primary rounded-none border-0 h-auto px-7 py-4 text-[13px] font-extrabold tracking-[2px] uppercase whitespace-nowrap hover:bg-white">Marcar agora</a>
+    </div>
+    <button id="menuOpen" aria-label="Menu" class="lg:hidden btn btn-square btn-ghost rounded-none border border-white/25 flex-col gap-1.5">
+      <span class="block w-5 h-0.5 bg-gold"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="menu" class="fixed inset-0 z-[60] bg-ink hidden flex-col px-6 py-5">
+    <div class="flex items-center justify-between">
+      <img src="assets/logo.png" alt="Reis Barbearia" class="h-13 w-auto" />
+      <button id="menuClose" aria-label="Fechar" class="btn btn-square btn-ghost rounded-none border border-white/25 text-xl">✕</button>
+    </div>
+    <div class="flex flex-col gap-1.5 mt-[8vh] font-display font-bold uppercase text-[44px] leading-[1.1]">
+      <a href="#servicos" data-close>Serviços</a>
+      <a href="#trabalho" data-close>Trabalho</a>
+      <a href="#avaliacoes" data-close>Avaliações</a>
+      <a href="#contactos" data-close>Contactos</a>
+    </div>
+    <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" data-close class="btn btn-primary rounded-none border-0 mt-auto h-auto py-5 text-[15px] font-extrabold tracking-[2px] uppercase">Marcar agora →</a>
+  </div>
+
+  <!-- HERO -->
+  <header id="top" class="relative w-full min-h-svh flex overflow-hidden">
+    <div class="absolute inset-0 bg-ink">
+      <div class="hero-slide active absolute inset-0 bg-cover bg-center" style="background-image:url('assets/equipa.png')"></div>
+      <div class="hero-slide absolute inset-0 bg-cover bg-[center_30%]" style="background-image:url('assets/fade-barba.png')"></div>
+      <div class="hero-slide absolute inset-0 bg-cover bg-center" style="background-image:url('assets/corte-risca.png')"></div>
+      <div class="hero-slide absolute inset-0 bg-cover bg-center" style="background-image:url('assets/corte-design.png')"></div>
+    </div>
+    <div class="absolute inset-0 pointer-events-none bg-ink/35"></div>
+    <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(80% 70% at 50% 50%, transparent 0%, rgba(5,5,5,.45) 100%)"></div>
+
+    <div class="relative z-10 w-full flex flex-col items-center justify-center text-center px-5 md:px-16 pt-28 pb-20">
+      <h1 class="m-0 leading-none">
+        <img src="assets/logo.png" alt="Reis Barbearia" class="w-[clamp(220px,32vw,420px)] h-auto drop-shadow-[0_6px_30px_rgba(0,0,0,.6)]" />
+      </h1>
+      <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="btn btn-primary rounded-none border-0 mt-10 h-auto px-11 py-5 text-[15px] font-extrabold tracking-[2px] uppercase whitespace-nowrap hover:bg-white hover:-translate-y-0.5 transition">Marcar agora <span aria-hidden="true">→</span></a>
+    </div>
+  </header>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="scroll-mt-20 bg-ink-2 border-t border-white/5 px-5 md:px-16 py-[clamp(60px,9vh,110px)]">
+    <h2 class="reveal font-display font-bold uppercase leading-[.95] text-[clamp(40px,7vw,104px)] mb-[clamp(40px,6vh,72px)]">Serviços</h2>
+
+    <div class="flex flex-col border-t border-white/10">
+      <!-- Para editar: duplica um bloco <a> e altera nome/preço -->
+      <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="group grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-[clamp(16px,3vw,48px)] py-[clamp(24px,3.4vw,40px)] border-b border-white/10 transition-all duration-300 hover:pl-4">
+        <h3 class="font-display font-bold uppercase leading-none text-[clamp(24px,3.4vw,44px)] transition-colors group-hover:text-gold">Corte Degradê Zero</h3>
+        <div class="text-right"><span class="font-num font-bold text-gold text-[clamp(24px,3vw,40px)]">€13</span><br /><span class="text-xs tracking-[2px] uppercase text-white/40">1h</span></div>
+        <span class="bg-gold text-ink text-xs font-extrabold tracking-[2px] uppercase px-4.5 py-3 whitespace-nowrap opacity-85 group-hover:opacity-100 transition-opacity">Marcar →</span>
+      </a>
+      <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="group grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-[clamp(16px,3vw,48px)] py-[clamp(24px,3.4vw,40px)] border-b border-white/10 transition-all duration-300 hover:pl-4">
+        <h3 class="font-display font-bold uppercase leading-none text-[clamp(24px,3.4vw,44px)] transition-colors group-hover:text-gold">Degradê + Barba</h3>
+        <div class="text-right"><span class="font-num font-bold text-gold text-[clamp(24px,3vw,40px)]">€20</span><br /><span class="text-xs tracking-[2px] uppercase text-white/40">1h</span></div>
+        <span class="bg-gold text-ink text-xs font-extrabold tracking-[2px] uppercase px-4.5 py-3 whitespace-nowrap opacity-85 group-hover:opacity-100 transition-opacity">Marcar →</span>
+      </a>
+      <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="group grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-[clamp(16px,3vw,48px)] py-[clamp(24px,3.4vw,40px)] border-b border-white/10 transition-all duration-300 hover:pl-4">
+        <h3 class="font-display font-bold uppercase leading-none text-[clamp(24px,3.4vw,44px)] transition-colors group-hover:text-gold">Corte Social + Barba</h3>
+        <div class="text-right"><span class="font-num font-bold text-gold text-[clamp(24px,3vw,40px)]">€18</span><br /><span class="text-xs tracking-[2px] uppercase text-white/40">1h</span></div>
+        <span class="bg-gold text-ink text-xs font-extrabold tracking-[2px] uppercase px-4.5 py-3 whitespace-nowrap opacity-85 group-hover:opacity-100 transition-opacity">Marcar →</span>
+      </a>
+      <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="group grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-[clamp(16px,3vw,48px)] py-[clamp(24px,3.4vw,40px)] border-b border-white/10 transition-all duration-300 hover:pl-4">
+        <h3 class="font-display font-bold uppercase leading-none text-[clamp(24px,3.4vw,44px)] transition-colors group-hover:text-gold">Corte Americano / Taper Fade</h3>
+        <div class="text-right"><span class="font-num font-bold text-gold text-[clamp(24px,3vw,40px)]">€12</span><br /><span class="text-xs tracking-[2px] uppercase text-white/40">1h</span></div>
+        <span class="bg-gold text-ink text-xs font-extrabold tracking-[2px] uppercase px-4.5 py-3 whitespace-nowrap opacity-85 group-hover:opacity-100 transition-opacity">Marcar →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- TRABALHO -->
+  <section id="trabalho" class="scroll-mt-20 border-t border-white/5 px-5 md:px-16 py-[clamp(72px,11vh,140px)]">
+    <div class="reveal mb-[clamp(36px,5vh,60px)]">
+      <a href="https://www.instagram.com/reis.barbearia23/" target="_blank" rel="noopener" class="inline-flex items-center gap-3.5 font-display font-bold leading-none text-[clamp(28px,4vw,52px)] hover:text-gold transition-colors"><span class="text-gold">@</span>reis.barbearia23 <span aria-hidden="true" class="text-gold text-[.7em]">↗</span></a>
+    </div>
+
+    <!-- Para trocar fotos: substitui os ficheiros em /assets ou altera o src -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <figure class="group relative overflow-hidden m-0 col-span-2 md:col-span-1 aspect-[16/10] md:aspect-[4/5]">
+        <img src="assets/fade-barba.png" alt="Fade com barba" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <figcaption class="absolute inset-0 flex items-center justify-center bg-ink/35 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"><span class="border border-gold text-gold text-xs font-extrabold tracking-[3px] uppercase px-5.5 py-3">Ver +</span></figcaption>
+      </figure>
+      <figure class="group relative overflow-hidden m-0 aspect-[4/5]">
+        <img src="assets/corte-risca.png" alt="Corte com risca" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <figcaption class="absolute inset-0 flex items-center justify-center bg-ink/35 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"><span class="border border-gold text-gold text-xs font-extrabold tracking-[3px] uppercase px-5.5 py-3">Ver +</span></figcaption>
+      </figure>
+      <figure class="group relative overflow-hidden m-0 aspect-[4/5]">
+        <img src="assets/equipa.png" alt="Equipa Reis Barbearia" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <figcaption class="absolute inset-0 flex items-center justify-center bg-ink/35 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"><span class="border border-gold text-gold text-xs font-extrabold tracking-[3px] uppercase px-5.5 py-3">Ver +</span></figcaption>
+      </figure>
+      <figure class="group relative overflow-hidden m-0 aspect-[4/5]">
+        <img src="assets/corte-design.png" alt="Corte com design" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <figcaption class="absolute inset-0 flex items-center justify-center bg-ink/35 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"><span class="border border-gold text-gold text-xs font-extrabold tracking-[3px] uppercase px-5.5 py-3">Ver +</span></figcaption>
+      </figure>
+      <figure class="group relative overflow-hidden m-0 aspect-[4/5]">
+        <img src="assets/fade-barba.png" alt="Degradê" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <figcaption class="absolute inset-0 flex items-center justify-center bg-ink/35 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"><span class="border border-gold text-gold text-xs font-extrabold tracking-[3px] uppercase px-5.5 py-3">Ver +</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- AVALIAÇÕES -->
+  <section id="avaliacoes" class="scroll-mt-20 bg-ink-2 border-t border-white/5 px-5 md:px-16 py-[clamp(72px,11vh,140px)]">
+    <h2 class="reveal font-display font-bold uppercase leading-[.95] text-[clamp(38px,6.5vw,96px)] mb-[clamp(40px,6vh,64px)]">Avaliações</h2>
+
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-4">
+      <div class="card rounded-none bg-ink border border-white/10 p-[clamp(24px,3vw,36px)]">
+        <div class="text-gold tracking-[3px] text-lg mb-4.5">★★★★★</div>
+        <p class="mb-6 leading-relaxed text-white/75">[INSERIR AVALIAÇÃO REAL DO GOOGLE]</p>
+        <p class="text-[13px] tracking-[1px] uppercase text-gold">— Nome do cliente</p>
+      </div>
+      <div class="card rounded-none bg-ink border border-white/10 p-[clamp(24px,3vw,36px)]">
+        <div class="text-gold tracking-[3px] text-lg mb-4.5">★★★★★</div>
+        <p class="mb-6 leading-relaxed text-white/75">[INSERIR AVALIAÇÃO REAL DO GOOGLE]</p>
+        <p class="text-[13px] tracking-[1px] uppercase text-gold">— Nome do cliente</p>
+      </div>
+      <div class="card rounded-none bg-ink border border-white/10 p-[clamp(24px,3vw,36px)]">
+        <div class="text-gold tracking-[3px] text-lg mb-4.5">★★★★★</div>
+        <p class="mb-6 leading-relaxed text-white/75">[INSERIR AVALIAÇÃO REAL DO GOOGLE]</p>
+        <p class="text-[13px] tracking-[1px] uppercase text-gold">— Nome do cliente</p>
+      </div>
+    </div>
+
+    <a href="https://www.google.com/maps/search/?api=1&query=Reis+Barbearia+Rua+Fonte+do+Pinheiro+8+Caldas+da+Rainha" target="_blank" rel="noopener" class="btn btn-outline rounded-none mt-9 h-auto px-8 py-4.5 border-white/30 text-white text-[13px] font-bold tracking-[2px] uppercase hover:bg-transparent hover:border-gold hover:text-gold">Ver todas as avaliações <span aria-hidden="true">→</span></a>
+  </section>
+
+  <!-- CONTACTOS -->
+  <section id="contactos" class="scroll-mt-20 border-t border-white/5 px-5 md:px-16 py-[clamp(72px,11vh,140px)]">
+    <div class="reveal">
+      <h2 class="font-display font-bold uppercase leading-[.95] text-[clamp(40px,7vw,104px)] mb-[clamp(40px,6vh,64px)]">Contactos</h2>
+
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,230px),1fr))] gap-[clamp(28px,4vw,56px)] border-t border-white/10 pt-[clamp(32px,4vh,48px)]">
+        <div>
+          <p class="mb-3 text-xs tracking-[3px] uppercase text-gold">Reis Barbearia</p>
+          <p class="text-[17px] leading-relaxed text-white/80">Rua Fonte do Pinheiro 8<br />2500-203 Caldas da Rainha<br />Portugal</p>
+        </div>
+        <div>
+          <p class="mb-3 text-xs tracking-[3px] uppercase text-gold">Telefone</p>
+          <a href="tel:+351960116858" class="text-[17px] text-white/80 hover:text-gold">+351 960 116 858</a>
+          <p class="mt-4.5 mb-2 text-xs tracking-[3px] uppercase text-gold">Instagram</p>
+          <a href="https://www.instagram.com/reis.barbearia23/" target="_blank" rel="noopener" class="text-[17px] text-white/80 hover:text-gold">@reis.barbearia23</a>
+        </div>
+        <div>
+          <p class="mb-3 text-xs tracking-[3px] uppercase text-gold">Horário</p>
+          <div class="leading-[1.9] text-white/80 max-w-60">
+            <div class="flex justify-between gap-4"><span>Segunda — Sexta</span><span class="text-white">10:00 — 20:00</span></div>
+            <div class="flex justify-between gap-4"><span>Sábado</span><span class="text-white">09:00 — 19:00</span></div>
+            <div class="flex justify-between gap-4"><span>Domingo</span><span class="text-white/40">Encerrado</span></div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-3">
+          <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="btn btn-primary rounded-none border-0 h-auto py-4.5 text-[13px] font-extrabold tracking-[2px] uppercase whitespace-nowrap hover:bg-white">Marcar agora →</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Reis+Barbearia+Rua+Fonte+do+Pinheiro+8+Caldas+da+Rainha" target="_blank" rel="noopener" class="btn btn-outline rounded-none h-auto py-4.5 border-white/30 text-white text-[13px] font-bold tracking-[2px] uppercase hover:bg-transparent hover:border-gold hover:text-gold">Abrir no Google Maps →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer block bg-[#030303] border-t border-white/10 px-5 md:px-16 pt-[clamp(56px,8vh,96px)] pb-[calc(clamp(56px,8vh,96px)+80px)] lg:pb-[clamp(56px,8vh,96px)]">
+    <img src="assets/logo.png" alt="Reis Barbearia" class="w-[clamp(140px,16vw,220px)] h-auto" />
+    <div class="flex flex-wrap items-center justify-between gap-5 mt-[clamp(32px,5vh,56px)] pt-7 border-t border-white/10">
+      <span class="text-xs tracking-[3px] uppercase text-white/50">Caldas da Rainha · Portugal</span>
+      <div class="flex gap-6 text-xs tracking-[2px] uppercase text-white/70">
+        <a href="https://www.instagram.com/reis.barbearia23/" target="_blank" rel="noopener" class="hover:text-gold">Instagram</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Reis+Barbearia+Rua+Fonte+do+Pinheiro+8+Caldas+da+Rainha" target="_blank" rel="noopener" class="hover:text-gold">Google</a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="hover:text-gold">Fresha</a>
+      </div>
+      <span class="text-xs text-white/35">© 2026 Reis Barbearia. Todos os direitos reservados.</span>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY CTA -->
+  <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="lg:hidden btn btn-primary rounded-none border-0 fixed left-3 right-3 bottom-[calc(12px+env(safe-area-inset-bottom))] z-40 h-auto py-4.5 text-[15px] font-extrabold tracking-[2px] uppercase shadow-[0_10px_30px_rgba(0,0,0,.5)]">Marcar agora →</a>
+
+  <script>
+    // Navbar: transparente → preto ao fazer scroll
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('nav-solid', window.scrollY > 40);
+    addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    // Menu mobile
+    const menu = document.getElementById('menu');
+    const open = () => { menu.classList.remove('hidden'); menu.classList.add('flex'); };
+    const close = () => { menu.classList.add('hidden'); menu.classList.remove('flex'); };
+    document.getElementById('menuOpen').addEventListener('click', open);
+    document.getElementById('menuClose').addEventListener('click', close);
+    menu.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click', close));
+
+    // Slideshow do hero (3s por foto)
+    const slides = document.querySelectorAll('.hero-slide');
+    let i = 0;
+    setInterval(() => {
+      slides[i].classList.remove('active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+    }, 3000);
+
+    // Animação fade-up
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
