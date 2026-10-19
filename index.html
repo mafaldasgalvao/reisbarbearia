@@ -85,7 +85,7 @@
   <!-- NAVBAR -->
   <nav id="nav" class="navbar fixed top-0 inset-x-0 z-50 px-5 md:px-16 py-4 bg-transparent border-b border-transparent transition-colors duration-500">
     <div class="flex-1">
-      <a href="#top" aria-label="Reis Barbearia"><img src="assets/logo.png" alt="Reis Barbearia" class="h-13 w-auto" /></a>
+      <a href="#top" aria-label="Reis Barbearia"><img src="assets/logo.svg" alt="Reis Barbearia" class="h-13 w-auto" /></a>
     </div>
     <div class="hidden lg:flex items-center gap-10">
       <a href="#servicos" class="text-[13px] font-semibold tracking-[2px] uppercase hover:text-gold transition-colors">Serviços</a>
@@ -104,7 +104,7 @@
   <!-- MOBILE MENU -->
   <div id="menu" class="fixed inset-0 z-[60] bg-ink hidden flex-col px-6 py-5">
     <div class="flex items-center justify-between">
-      <img src="assets/logo.png" alt="Reis Barbearia" class="h-13 w-auto" />
+      <img src="assets/logo.svg" alt="Reis Barbearia" class="h-13 w-auto" />
       <button id="menuClose" aria-label="Fechar" class="btn btn-square btn-ghost rounded-none border border-white/25 text-xl">✕</button>
     </div>
     <div class="flex flex-col gap-1.5 mt-[8vh] font-display font-bold uppercase text-[44px] leading-[1.1]">
@@ -129,7 +129,7 @@
 
     <div class="relative z-10 w-full flex flex-col items-center justify-center text-center px-5 md:px-16 pt-28 pb-20">
       <h1 class="m-0 leading-none">
-        <img src="assets/logo.png" alt="Reis Barbearia" class="w-[clamp(220px,32vw,420px)] h-auto drop-shadow-[0_6px_30px_rgba(0,0,0,.6)]" />
+        <img src="assets/logo.svg" alt="Reis Barbearia" class="w-[clamp(220px,32vw,420px)] h-auto drop-shadow-[0_6px_30px_rgba(0,0,0,.6)]" />
       </h1>
       <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="btn btn-primary rounded-none border-0 mt-10 h-auto px-11 py-5 text-[15px] font-extrabold tracking-[2px] uppercase whitespace-nowrap hover:bg-white hover:-translate-y-0.5 transition">Marcar agora <span aria-hidden="true">→</span></a>
     </div>
@@ -312,7 +312,7 @@
 
   <!-- AVALIAÇÕES -->
   <section id="avaliacoes" class="scroll-mt-20 bg-ink-2 border-t border-white/5 px-5 md:px-16 py-[clamp(72px,11vh,140px)]">
-    <h2 class="reveal font-display font-bold uppercase leading-[.95] text-[clamp(35px,8vw,65px)] mb-[clamp(40px,6vh,64px)]">Avaliações</h2>
+    <h2 class="reveal font-display font-bold uppercase leading-[.95] text-[clamp(35px,8vw,65px)] mb-[clamp(40px,6vh,64px)]">O QUE SE DIZ SOBRE NÓS</h2>
 
     <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-4">
       <div class="card rounded-none bg-ink border border-white/10 p-[clamp(24px,3vw,36px)]">
@@ -359,7 +359,7 @@
       <div class="btn-row">
 
         <a href="tel:+351960116858" class="loc-btn loc-btn--outline">Ligar</a>
-        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="loc-btn loc-btn--gold-outline">Marcar agora →</a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" data-close class="btn btn-primary rounded-none border-0 mt-auto h-auto py-5 text-[15px] font-extrabold tracking-[2px] uppercase">Marcar </a>
       </div>
     </div>
   </section>
@@ -367,7 +367,7 @@
   <!-- FOOTER -->
   <footer class="footer block bg-[#030303] border-t border-white/10 px-5 md:px-16 pt-[clamp(56px,8vh,96px)] pb-[calc(clamp(56px,8vh,96px)+80px)] lg:pb-[clamp(56px,8vh,96px)]">
     <div class="grid gap-[clamp(32px,5vw,64px)] grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.4fr_1fr]">
-      <img src="assets/logo.png" alt="Reis Barbearia" class="w-[clamp(140px,16vw,220px)] h-auto" />
+      <img src="assets/logo.svg" alt="Reis Barbearia" class="w-[clamp(140px,16vw,150px)] h-auto" />
 
       <nav aria-label="Rodapé">
         <p class="mb-4 text-xs font-bold tracking-[3px] uppercase text-gold">Navegação</p>
@@ -390,7 +390,9 @@
       <div>
         <p class="mb-4 text-xs font-bold tracking-[3px] uppercase text-gold">Siga-nos</p>
         <ul class="flex flex-col gap-2.5 text-[15px] text-white/70">
-          <li><a href="https://www.instagram.com/reis.barbearia23/" target="_blank" rel="noopener" class="hover:text-gold transition-colors">Instagram</a></li>
+          <li><a href="https://www.instagram.com/reis.barbearia23/" target="_blank" rel="noopener" aria-label="Instagram @reis.barbearia23" class="inline-flex w-11 h-11 items-center justify-center  hover:text-gold hover:border-gold transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-5.5 h-5.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a></li>
         </ul>
       </div>
     </div>
