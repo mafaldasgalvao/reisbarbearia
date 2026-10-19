@@ -54,6 +54,8 @@
     /* Contactos / localização */
     .location { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); background: #080808; border-top: 1px solid rgba(255,255,255,.06); color: #fff; font-family: 'Inter', system-ui, sans-serif; scroll-margin-top: 80px; }
     .location__map { position: relative; min-height: clamp(300px, 60vh, 500px); background: #050505; }
+    /* Telemóvel/tablet: uma coluna, mapa no fim (depois dos contactos) */
+    @media (max-width: 1023px) { .location { grid-template-columns: 1fr; } .location__map { order: 1; } }
     .location__map iframe { position: absolute; inset: 0; margin: auto; width: 75%; height: 75%; border: 0; }
     .location__info { display: flex; flex-direction: column; justify-content: center; padding: clamp(56px, 9vh, 110px) clamp(20px, 5vw, 64px); }
 
@@ -253,7 +255,7 @@
         <img src="assets/galeria/barbeiro-a-aparar-a-barba-de-um-cliente.jpg" alt="Allison a aparar a barba de um cliente" loading="lazy" class="absolute right-0 bottom-0 w-[48%] aspect-[3/4] object-cover border-[6px] border-ink shadow-[0_20px_50px_rgba(0,0,0,.6)]" />
       </div>
 
-      <div class="reveal">
+      <div class="reveal order-first lg:order-none">
         <h2 class="font-display font-bold uppercase leading-[.95] text-[clamp(35px,8vw,65px)] mb-[clamp(24px,4vh,40px)]">O Mestre</h2>
         <p class="font-display font-semibold uppercase tracking-[2px] text-[clamp(18px,1.8vw,22px)] mb-5">Allison <span class="text-white/40">  Barbeiro &amp; Fundador</span></p>
         <div class="space-y-4 text-[17px] leading-relaxed text-white/75 max-w-xl">
@@ -268,7 +270,7 @@
   <!-- TRABALHO -->
   <section id="trabalho" class="scroll-mt-20 border-t border-white/5 px-5 md:px-16 py-[clamp(72px,11vh,140px)]">
     <div class="reveal mb-[clamp(36px,5vh,60px)]">
-      <a href="https://www.instagram.com/reis.barbearia23/" target="_blank" rel="noopener" class="inline-flex items-center gap-3.5 font-display font-bold leading-none text-[clamp(28px,4vw,52px)] hover:text-gold transition-colors"><span class="text-gold">@</span>reis.barbearia23 <span aria-hidden="true" class="text-gold text-[.7em]">↗</span></a>
+      <a href="https://www.instagram.com/reis.barbearia23/" target="_blank" rel="noopener" class="inline-flex items-center gap-3.5 font-display font-bold leading-none text-[clamp(28px,4vw,52px)] hover:text-gold transition-colors"><span class="text-gold">@</span>reis.barbearia23 <span aria-hidden="true" class="text-gold text-[.7em]"></span></a>
     </div>
 
     <!-- Galeria (estilo slider): 3 fotos por slide no desktop, 1 no telemóvel. Para trocar/adicionar fotos, coloca-as em /assets/galeria e copia um <figure> -->
@@ -364,7 +366,7 @@
       <h2 id="loc-t" class="font-display font-bold uppercase leading-[.95] text-[clamp(35px,8vw,65px)] mb-[clamp(40px,6vh,64px)]">Contactos</h2>
 
       <dl class="info">
-        <div><dt>Localização</dt><dd>Rua Fonte do Pinheiro 8<br>2500-203 Caldas da Rainha, Portugal</dd></div>
+        <div><dt>Localização</dt><dd><a href="https://www.google.com/maps/search/?api=1&query=Reis+Barbearia+Rua+Fonte+do+Pinheiro+8+2500-203+Caldas+da+Rainha" target="_blank" rel="noopener">Rua Fonte do Pinheiro 8<br>2500-203 Caldas da Rainha, Portugal</a></dd></div>
         <div><dt>Horário</dt><dd>
           <span class="hours"><span>Segunda — Sexta</span><b>10:00 — 20:00</b></span>
           <span class="hours"><span>Sábado</span><b>09:00 — 19:00</b></span>
