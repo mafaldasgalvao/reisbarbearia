@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="reis">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reis Barbearia · Caldas da Rainha</title>
+  <meta name="description" content="Reis Barbearia — barbearia em Caldas da Rainha. Degradê, taper fade e barba. Marca o teu horário online." />
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- daisyUI 5 + Tailwind CSS 4 (CDN, no build step) -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --color-gold: #fcc83d;
+      --color-ink: #050505;
+      --color-ink-2: #080808;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-display: 'IBM Plex Sans Condensed', sans-serif;
+      --font-num: 'Oswald', sans-serif;
+    }
+    [data-theme="reis"] {
+      color-scheme: dark;
+      --color-base-100: #050505;
+      --color-base-200: #080808;
+      --color-base-300: #101010;
+      --color-base-content: #ffffff;
+      --color-primary: #fcc83d;
+      --color-primary-content: #050505;
+      --radius-field: 0;
+      --radius-box: 0;
+      --radius-selector: 0;
+    }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: #fcc83d; color: #050505; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .hero-slide { opacity: 0; transform: scale(1.04); transition: opacity 1.2s ease, transform 4s ease-out; }
+    .hero-slide.active { opacity: 1; transform: scale(1); }
+    .nav-solid { background: #050505 !important; border-color: rgba(255,255,255,.08) !important; }
+    .tab-btn { color: rgba(255,255,255,.45); border-color: transparent; cursor: pointer; }
+    .tab-btn:hover { color: #fff; }
+    .tab-btn[aria-selected="true"] { color: #fcc83d; border-color: #fcc83d; }
+    /* Todos os painéis ocupam a mesma célula: a altura fica sempre igual à do painel maior */
+    .tab-panels { display: grid; }
+    .tab-panels > [role="tabpanel"] { grid-area: 1 / 1; align-content: start; }
+    .tab-panels > [role="tabpanel"][hidden] { display: grid !important; visibility: hidden; }
+    /* Contactos / localização */
+    .location { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); background: #080808; border-top: 1px solid rgba(255,255,255,.06); color: #fff; font-family: 'Inter', system-ui, sans-serif; scroll-margin-top: 80px; }
+    .location__map { position: relative; min-height: clamp(300px, 60vh, 500px); background: #050505; }
+    .location__map iframe { position: absolute; inset: 0; margin: auto; width: 75%; height: 75%; border: 0; }
+    .location__info { display: flex; flex-direction: column; justify-content: center; padding: clamp(56px, 9vh, 110px) clamp(20px, 5vw, 64px); }
+
+    .location .eyebrow { margin: 0 0 18px; font-size: 12px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: #fcc83d; }
+
+    .location .info { margin: 0; border-top: 1px solid rgba(255,255,255,.12); }
+    .location .info > div { padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .location .info dt { margin: 0 0 8px; font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #fcc83d; }
+    .location .info dd { margin: 0; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.85); }
+    .location .info dd a { color: #fff; text-decoration: none; }
+    .location .info dd a:hover { color: #fcc83d; }
+    .location .hours { display: flex; justify-content: space-between; gap: 16px; max-width: 300px; }
+    .location .hours b { font-weight: 500; color: #fff; }
+    .location .hours b.muted { color: rgba(255,255,255,.45); }
+
+    .location .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(28px, 4vh, 40px); }
+    .loc-btn { display: inline-flex; align-items: center; padding: 18px 30px; font-size: 13px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; text-decoration: none; border: 1px solid transparent; transition: .25s ease; }
+    .loc-btn--primary { background: #fcc83d; color: #050505; }
+    .loc-btn--primary:hover { background: #fff; }
+    .loc-btn--outline { border-color: rgba(255,255,255,.3); color: #fff; }
+    .loc-btn--outline:hover { border-color: #fcc83d; color: #fcc83d; }
+    .loc-btn--gold-outline { border-color: rgba(252,200,61,.6); color: #fcc83d; }
+    .loc-btn--gold-outline:hover { background: #fcc83d; color: #050505; }
+  </style>
+</head>
+
+<body class="bg-ink text-white font-sans">
+
+  <!-- NAVBAR -->
+  <nav id="nav" class="navbar fixed top-0 inset-x-0 z-50 px-5 md:px-16 py-4 bg-transparent border-b border-transparent transition-colors duration-500">
+    <div class="flex-1">
+      <a href="#top" aria-label="Reis Barbearia"><img src="assets/logo.png" alt="Reis Barbearia" class="h-13 w-auto" /></a>
+    </div>
+    <div class="hidden lg:flex items-center gap-10">
+      <a href="#servicos" class="text-[13px] font-semibold tracking-[2px] uppercase hover:text-gold transition-colors">Serviços</a>
+      <a href="#trabalho" class="text-[13px] font-semibold tracking-[2px] uppercase hover:text-gold transition-colors">Trabalho</a>
+      <a href="#avaliacoes" class="text-[13px] font-semibold tracking-[2px] uppercase hover:text-gold transition-colors">Avaliações</a>
+      <a href="#contactos" class="text-[13px] font-semibold tracking-[2px] uppercase hover:text-gold transition-colors">Contactos</a>
+      <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="btn btn-primary rounded-none border-0 h-auto px-7 py-4 text-[13px] font-extrabold tracking-[2px] uppercase whitespace-nowrap hover:bg-white">Marcar agora</a>
+    </div>
+    <button id="menuOpen" aria-label="Menu" class="lg:hidden btn btn-square btn-ghost rounded-none border border-white/25 flex-col gap-1.5">
+      <span class="block w-5 h-0.5 bg-gold"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+      <span class="block w-5 h-0.5 bg-white"></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="menu" class="fixed inset-0 z-[60] bg-ink hidden flex-col px-6 py-5">
+    <div class="flex items-center justify-between">
+      <img src="assets/logo.png" alt="Reis Barbearia" class="h-13 w-auto" />
+      <button id="menuClose" aria-label="Fechar" class="btn btn-square btn-ghost rounded-none border border-white/25 text-xl">✕</button>
+    </div>
+    <div class="flex flex-col gap-1.5 mt-[8vh] font-display font-bold uppercase text-[44px] leading-[1.1]">
+      <a href="#servicos" data-close>Serviços</a>
+      <a href="#trabalho" data-close>Trabalho</a>
+      <a href="#avaliacoes" data-close>Avaliações</a>
+      <a href="#contactos" data-close>Contactos</a>
+    </div>
+    <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" data-close class="btn btn-primary rounded-none border-0 mt-auto h-auto py-5 text-[15px] font-extrabold tracking-[2px] uppercase">Marcar agora →</a>
+  </div>
+
+  <!-- HERO -->
+  <header id="top" class="relative w-full min-h-svh flex overflow-hidden">
+    <div class="absolute inset-0 bg-ink">
+      <div class="hero-slide active absolute inset-0 bg-cover bg-center" style="background-image:url('assets/equipa.png')"></div>
+      <div class="hero-slide absolute inset-0 bg-cover bg-[center_30%]" style="background-image:url('assets/corte-infantil-com-desenho.png')"></div>
+      <div class="hero-slide absolute inset-0 bg-cover bg-center" style="background-image:url('assets/corte-risca.png')"></div>
+      <div class="hero-slide absolute inset-0 bg-cover bg-center" style="background-image:url('assets/espelho-afro.png')"></div>
+    </div>
+    <div class="absolute inset-0 pointer-events-none bg-ink/35"></div>
+    <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(80% 70% at 50% 50%, transparent 0%, rgba(5,5,5,.45) 100%)"></div>
+
+    <div class="relative z-10 w-full flex flex-col items-center justify-center text-center px-5 md:px-16 pt-28 pb-20">
+      <h1 class="m-0 leading-none">
+        <img src="assets/logo.png" alt="Reis Barbearia" class="w-[clamp(220px,32vw,420px)] h-auto drop-shadow-[0_6px_30px_rgba(0,0,0,.6)]" />
+      </h1>
+      <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="btn btn-primary rounded-none border-0 mt-10 h-auto px-11 py-5 text-[15px] font-extrabold tracking-[2px] uppercase whitespace-nowrap hover:bg-white hover:-translate-y-0.5 transition">Marcar agora <span aria-hidden="true">→</span></a>
+    </div>
+  </header>
+
+
+    <!-- MENU DE SERVIÇOS -->
+  <main id="servicos" class="scroll-mt-20 px-5 md:px-16 pt-24 md:pt-28 pb-[clamp(72px,11vh,140px)]">
+        <h1 class="reveal font-display font-bold uppercase leading-[.95] text-[clamp(35px,8vw,65px)] mb-2 md:mb-6">Serviços</h1>
+
+    <!-- Separadores: cada botão mostra o painel com o mesmo id. Para editar: altera nome/duração/preço; o link offerItemId abre a marcação desse serviço -->
+    <div role="tablist" aria-label="Categorias de serviços" class="reveal flex gap-[clamp(20px,3vw,44px)] overflow-x-auto border-b border-white/10 mb-[clamp(16px,3vh,32px)] [scrollbar-width:none]">
+      <button type="button" role="tab" id="tab-corte" aria-controls="corte" aria-selected="true" class="tab-btn shrink-0 -mb-px px-1 py-4 border-b-2 font-display font-bold uppercase text-[clamp(15px,1.5vw,19px)] tracking-[1px] whitespace-nowrap transition-colors">Corte</button>
+      <button type="button" role="tab" id="tab-higiene" aria-controls="higiene" aria-selected="false" class="tab-btn shrink-0 -mb-px px-1 py-4 border-b-2 font-display font-bold uppercase text-[clamp(15px,1.5vw,19px)] tracking-[1px] whitespace-nowrap transition-colors">Higiene</button>
+      <button type="button" role="tab" id="tab-quimica" aria-controls="quimica" aria-selected="false" class="tab-btn shrink-0 -mb-px px-1 py-4 border-b-2 font-display font-bold uppercase text-[clamp(15px,1.5vw,19px)] tracking-[1px] whitespace-nowrap transition-colors">Descoloração & Química</button>
+      <button type="button" role="tab" id="tab-protese" aria-controls="protese" aria-selected="false" class="tab-btn shrink-0 -mb-px px-1 py-4 border-b-2 font-display font-bold uppercase text-[clamp(15px,1.5vw,19px)] tracking-[1px] whitespace-nowrap transition-colors">Prótese Capilar</button>
+    </div>
+
+    <div class="reveal tab-panels">
+      <div role="tabpanel" id="corte" aria-labelledby="tab-corte" class="grid md:grid-cols-2 gap-x-[clamp(40px,6vw,96px)]">
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:21295258" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Corte Adulto Social</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">1h</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€12</span>
+        </a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:22587067" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Corte Americano / Taper Fade</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">1h</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€12</span>
+        </a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:21295262" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Corte Degradê Zero</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">1h</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€13</span>
+        </a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:21295265" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Corte Degradê Shaver-0</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">1h</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€14</span>
+        </a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:21295253" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Corte Infantil</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">1h</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€12</span>
+        </a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:22563753" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Corte Social + Barba</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">1h</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€18</span>
+        </a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:21295321" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Degradê + Barba</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">1h</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€20</span>
+        </a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:21295266" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Barba</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">1h</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€7</span>
+        </a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:21295277" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Contorno</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">15 min</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€5</span>
+        </a>
+      </div>
+      <div role="tabpanel" id="higiene" aria-labelledby="tab-higiene" class="grid md:grid-cols-2 gap-x-[clamp(40px,6vw,96px)]" hidden>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:21295292" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Depilação do nariz na cera</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">15 min</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€5</span>
+        </a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:21295302" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Depilação das orelhas na cera</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">15 min</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€5</span>
+        </a>
+      </div>
+      <div role="tabpanel" id="quimica" aria-labelledby="tab-quimica" class="grid md:grid-cols-2 gap-x-[clamp(40px,6vw,96px)]" hidden>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:21295272" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Pintura / Pigmentar</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">30 min</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€5</span>
+        </a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:21295313" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Madeixas Brancas / Platinado</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">1h30</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€25</span>
+        </a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:21295279" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Progressiva</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">1h</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€30</span>
+        </a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:21295319" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Platinado Total</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">2h</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€40</span>
+        </a>
+      </div>
+      <div role="tabpanel" id="protese" aria-labelledby="tab-protese" class="grid md:grid-cols-2 gap-x-[clamp(40px,6vw,96px)]" hidden>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:22563723" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Manutenção de Prótese (completa)</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">1h30</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€30</span>
+        </a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s/booking?offerItemId=s:22563702" target="_blank" rel="noopener" class="group grid grid-cols-[auto_minmax(16px,1fr)_auto] items-end gap-3 py-5 border-b border-white/10">
+          <span><span class="block font-display font-semibold uppercase leading-tight text-[clamp(17px,1.6vw,21px)] transition-colors group-hover:text-gold">Prótese Capilar (colocada)</span><span class="block mt-1 text-[11px] tracking-[2px] uppercase text-white/40">2h</span></span>
+          <span aria-hidden="true" class="mb-2 border-b border-dotted border-white/25"></span>
+          <span class="font-num font-bold text-gold leading-none text-[clamp(20px,2vw,26px)]">€400</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+
+
+  <!-- TRABALHO -->
+  <section id="trabalho" class="scroll-mt-20 border-t border-white/5 px-5 md:px-16 py-[clamp(72px,11vh,140px)]">
+    <div class="reveal mb-[clamp(36px,5vh,60px)]">
+      <a href="https://www.instagram.com/reis.barbearia23/" target="_blank" rel="noopener" class="inline-flex items-center gap-3.5 font-display font-bold leading-none text-[clamp(28px,4vw,52px)] hover:text-gold transition-colors"><span class="text-gold">@</span>reis.barbearia23 <span aria-hidden="true" class="text-gold text-[.7em]">↗</span></a>
+    </div>
+
+    <!-- Galeria (estilo slider): 3 fotos por slide no desktop, 1 no telemóvel. Para trocar/adicionar fotos, coloca-as em /assets/galeria e copia um <figure> -->
+    <div class="reveal">
+      <div class="relative">
+        <div id="galeria" class="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="region" aria-roledescription="carrossel" aria-label="Galeria de cortes">
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/low-fade-com-topo-curto.jpg" alt="Low fade com topo curto" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/barbeiro-a-aparar-a-barba-de-um-cliente.jpg" alt="Barbeiro a aparar a barba de um cliente" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/fade-com-caracois-no-topo.jpg" alt="Fade com caracóis no topo" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/desenho-na-nuca-com-degrade.jpg" alt="Desenho na nuca com degradê" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/degrade-com-risca-desenhada.jpg" alt="Degradê com risca desenhada" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/fade-com-cabelo-afro-texturizado.jpg" alt="Fade com cabelo afro texturizado" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/corte-com-franja-texturizada.jpg" alt="Corte com franja texturizada" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/high-fade-classico.jpg" alt="High fade clássico" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/degrade-zero-com-barba.jpg" alt="Degradê zero com barba" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/corte-texturizado-com-degrade.jpg" alt="Corte texturizado com degradê" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/degrade-com-risca-e-desenho.jpg" alt="Degradê com risca e desenho" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/corte-infantil-com-desenho.jpg" alt="Corte infantil com desenho" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/corte-infantil-em-tigela.jpg" alt="Corte infantil em tigela" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/taper-fade-com-contorno.jpg" alt="Taper fade com contorno" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        <figure class="group relative overflow-hidden m-0 shrink-0 snap-start aspect-[3/4] w-full md:w-[calc((100%-24px)/3)]">
+          <img src="assets/galeria/barbeiro-com-cliente-na-reis-barbearia.jpg" alt="Barbeiro com cliente na Reis Barbearia" loading="lazy" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        </figure>
+        </div>
+        <button type="button" id="galPrev" aria-label="Slide anterior" class="absolute top-1/2 -translate-y-1/2 z-10 w-12 h-12 grid place-items-center bg-ink/70 border border-white/20 text-lg hover:border-gold hover:text-gold transition-colors cursor-pointer left-3 md:-left-6">←</button>
+        <button type="button" id="galNext" aria-label="Slide seguinte" class="absolute top-1/2 -translate-y-1/2 z-10 w-12 h-12 grid place-items-center bg-ink/70 border border-white/20 text-lg hover:border-gold hover:text-gold transition-colors cursor-pointer right-3 md:-right-6">→</button>
+      </div>
+      <div id="galDots" class="flex justify-center gap-2.5 mt-6"></div>
+    </div>
+  </section>
+
+  <!-- AVALIAÇÕES -->
+  <section id="avaliacoes" class="scroll-mt-20 bg-ink-2 border-t border-white/5 px-5 md:px-16 py-[clamp(72px,11vh,140px)]">
+    <h2 class="reveal font-display font-bold uppercase leading-[.95] text-[clamp(35px,8vw,65px)] mb-[clamp(40px,6vh,64px)]">Avaliações</h2>
+
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-4">
+      <div class="card rounded-none bg-ink border border-white/10 p-[clamp(24px,3vw,36px)]">
+        <div class="text-gold tracking-[3px] text-lg mb-4.5">★★★★★</div>
+        <p class="mb-6 leading-relaxed text-white/75">Acesso para cadeiras de Rodas , marcação por aplicação de fácil uso , enquanto espera por sua vez o local disponibiliza de uma mesa de snooker, cerveja fresca, casa de banho , o café é de cortesia para os clientes, camisolas de varias equipas de futebol do mundo inteiro, ambiente muito familiar.</p>
+        <p class="text-[13px] tracking-[1px] uppercase text-gold">— CARLOS EDUARDO BRITO SOARES</p>
+      </div>
+      <div class="card rounded-none bg-ink border border-white/10 p-[clamp(24px,3vw,36px)]">
+        <div class="text-gold tracking-[3px] text-lg mb-4.5">★★★★★</div>
+        <p class="mb-6 leading-relaxed text-white/75">Atendimento maravilhoso! Meu filho tinha mt medo de cortar o cabelo, e desde que conhecemos o trabalho do Allison nunca mais trocamos!</p>
+        <p class="text-[13px] tracking-[1px] uppercase text-gold">— BEATRIZ SANTOS TEIXEIRA</p>
+      </div>
+      <div class="card rounded-none bg-ink border border-white/10 p-[clamp(24px,3vw,36px)]">
+        <div class="text-gold tracking-[3px] text-lg mb-4.5">★★★★★</div>
+        <p class="mb-6 leading-relaxed text-white/75">Ambiente top, Experiência impecável! Atendimento excelente, ambiente muito agradável e um trabalho feito com muita qualidade e atenção aos detalhes. Dá pra perceber o profissionalismo e dedicação do Alisson. Sem dúvida, uma das melhores barbearias da região. Recomendo de olhos fechados!</p>
+        <p class="text-[13px] tracking-[1px] uppercase text-gold">— Adilson Nicolas</p>
+      </div>
+    </div>
+
+    <a href="https://www.google.com/maps/search/?api=1&query=Reis+Barbearia+Rua+Fonte+do+Pinheiro+8+Caldas+da+Rainha" target="_blank" rel="noopener" class="btn btn-outline rounded-none mt-9 h-auto px-8 py-4.5 border-white/30 text-white text-[13px] font-bold tracking-[2px] uppercase hover:bg-transparent hover:border-gold hover:text-gold">Ver todas as avaliações <span aria-hidden="true">→</span></a>
+  </section>
+
+  <!-- CONTACTOS -->
+  <section class="location" id="contactos" aria-labelledby="loc-t">
+    <div class="location__map">
+      <iframe src="https://maps.google.com/maps?q=Rua%20Fonte%20do%20Pinheiro%208%2C%202500-203%20Caldas%20da%20Rainha&z=16&output=embed" title="Mapa Reis Barbearia" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="location__info">
+
+      <h2 id="loc-t" class="font-display font-bold uppercase leading-[.95] text-[clamp(35px,8vw,65px)] mb-[clamp(40px,6vh,64px)]">Contactos</h2>
+
+      <dl class="info">
+        <div><dt>Localização</dt><dd>Rua Fonte do Pinheiro 8<br>2500-203 Caldas da Rainha, Portugal</dd></div>
+        <div><dt>Horário</dt><dd>
+          <span class="hours"><span>Segunda — Sexta</span><b>10:00 — 20:00</b></span>
+          <span class="hours"><span>Sábado</span><b>09:00 — 19:00</b></span>
+          <span class="hours"><span>Domingo</span><b class="muted">Encerrado</b></span>
+        </dd></div>
+        <div><dt>Telefone</dt><dd><a href="https://wa.me/351960116858" target="_blank" rel="noopener">+351 960 116 858</a></dd></div>
+
+      </dl>
+
+      <div class="btn-row">
+
+        <a href="tel:+351960116858" class="loc-btn loc-btn--outline">Ligar</a>
+        <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="loc-btn loc-btn--gold-outline">Marcar agora →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer block bg-[#030303] border-t border-white/10 px-5 md:px-16 pt-[clamp(56px,8vh,96px)] pb-[calc(clamp(56px,8vh,96px)+80px)] lg:pb-[clamp(56px,8vh,96px)]">
+    <div class="grid gap-[clamp(32px,5vw,64px)] grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.4fr_1fr]">
+      <img src="assets/logo.png" alt="Reis Barbearia" class="w-[clamp(140px,16vw,220px)] h-auto" />
+
+      <nav aria-label="Rodapé">
+        <p class="mb-4 text-xs font-bold tracking-[3px] uppercase text-gold">Navegação</p>
+        <ul class="flex flex-col gap-2.5 text-[15px] text-white/70">
+          <li><a href="#servicos" class="hover:text-gold transition-colors">Serviços</a></li>
+          <li><a href="#trabalho" class="hover:text-gold transition-colors">Trabalho</a></li>
+          <li><a href="#avaliacoes" class="hover:text-gold transition-colors">Avaliações</a></li>
+          <li><a href="#contactos" class="hover:text-gold transition-colors">Localização &amp; Contactos</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <p class="mb-4 text-xs font-bold tracking-[3px] uppercase text-gold">Contacto</p>
+        <ul class="flex flex-col gap-2.5 text-[15px] text-white/70">
+          <li><a href="https://wa.me/351960116858" target="_blank" rel="noopener" class="hover:text-gold transition-colors">+351 960 116 858</a></li>
+          <li>Rua Fonte do Pinheiro 8<br />2500-203 Caldas da Rainha</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="mb-4 text-xs font-bold tracking-[3px] uppercase text-gold">Siga-nos</p>
+        <ul class="flex flex-col gap-2.5 text-[15px] text-white/70">
+          <li><a href="https://www.instagram.com/reis.barbearia23/" target="_blank" rel="noopener" class="hover:text-gold transition-colors">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- BARRA DE LOGOS -->
+    <div class="flex! w-full justify-center mt-[clamp(32px,5vh,56px)] pt-[clamp(32px,5vh,56px)] border-t border-white/10">
+      <img src="assets/BARRA_LOGOS-02.png" alt="PRR — Plano de Recuperação e Resiliência · República Portuguesa · Financiado pela União Europeia NextGenerationEU" loading="lazy" class="w-full max-w-[400px] h-auto" />
+    </div>
+    <div class="flex flex-wrap w-full items-center justify-between gap-5 mt-[clamp(32px,5vh,56px)] pt-7 border-t border-white/10">
+      <span class="text-xs tracking-[3px] uppercase text-white/50">Caldas da Rainha · Portugal</span>
+
+      <span class="text-xs text-white/35">© 2026 Reis Barbearia. Todos os direitos reservados. Website por <a href="https://datahouse.studio" target="_blank" rel="noopener" class="text-white/60 hover:text-gold transition-colors">Datahouse Studio</a></span>
+    </div>
+  </footer>
+
+
+
+  <!-- MOBILE STICKY CTA -->
+  <a href="https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s" target="_blank" rel="noopener" class="lg:hidden btn btn-primary rounded-none border-0 fixed left-3 right-3 bottom-[calc(12px+env(safe-area-inset-bottom))] z-40 h-auto py-4.5 text-[15px] font-extrabold tracking-[2px] uppercase shadow-[0_10px_30px_rgba(0,0,0,.5)]">Marcar agora →</a>
+
+  <script>
+    // Navbar: transparente → preto ao fazer scroll
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('nav-solid', window.scrollY > 40);
+    addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    // Menu mobile
+    const menu = document.getElementById('menu');
+    const open = () => { menu.classList.remove('hidden'); menu.classList.add('flex'); };
+    const close = () => { menu.classList.add('hidden'); menu.classList.remove('flex'); };
+    document.getElementById('menuOpen').addEventListener('click', open);
+    document.getElementById('menuClose').addEventListener('click', close);
+    menu.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click', close));
+
+    // Slideshow do hero (3s por foto)
+    const slides = document.querySelectorAll('.hero-slide');
+    let i = 0;
+    setInterval(() => {
+      slides[i].classList.remove('active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+    }, 3000);
+
+    // Separadores dos serviços
+    const tabs = [...document.querySelectorAll('.tab-btn')];
+    const selectTab = tab => tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    tabs.forEach((t, n) => {
+      t.addEventListener('click', () => selectTab(t));
+      t.addEventListener('keydown', e => {
+        const step = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+        if (!step) return;
+        const next = tabs[(n + step + tabs.length) % tabs.length];
+        selectTab(next); next.focus();
+      });
+    });
+    selectTab(tabs.find(t => t.getAttribute('aria-selected') === 'true') || tabs[0]);
+
+    // Galeria (slider): avança um slide inteiro de cada vez e volta ao início no fim
+    const gal = document.getElementById('galeria');
+    const galDots = document.getElementById('galDots');
+    const galStep = () => gal.firstElementChild.offsetWidth + 12;
+    const galPer = () => Math.max(1, Math.round((gal.clientWidth + 12) / galStep()));
+    const galPages = () => Math.ceil(gal.children.length / galPer());
+    const galPage = () => gal.scrollLeft + gal.clientWidth >= gal.scrollWidth - 4
+      ? galPages() - 1 : Math.round(gal.scrollLeft / (galStep() * galPer()));
+    const galGo = n => { const t = galPages(); gal.scrollTo({ left: ((n + t) % t) * galPer() * galStep() }); };
+    const galDraw = () => {
+      const t = galPages(), cur = galPage();
+      if (galDots.children.length !== t) {
+        galDots.innerHTML = '';
+        for (let k = 0; k < t; k++) {
+          const d = document.createElement('button');
+          d.type = 'button'; d.setAttribute('aria-label', `Slide ${k + 1} de ${t}`);
+          d.className = 'w-2.5 h-2.5 rounded-full transition-colors cursor-pointer';
+          d.addEventListener('click', () => galGo(k));
+          galDots.append(d);
+        }
+      }
+      [...galDots.children].forEach((d, k) => {
+        d.classList.toggle('bg-gold', k === cur); d.classList.toggle('bg-white/25', k !== cur);
+        d.setAttribute('aria-current', k === cur);
+      });
+    };
+    document.getElementById('galPrev').addEventListener('click', () => galGo(galPage() - 1));
+    document.getElementById('galNext').addEventListener('click', () => galGo(galPage() + 1));
+    gal.addEventListener('scroll', galDraw, { passive: true });
+    addEventListener('resize', galDraw); galDraw();
+
+    // Animação fade-up
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
