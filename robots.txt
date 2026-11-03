@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reisbarbearia.com/sitemap.xml
