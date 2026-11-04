@@ -7,9 +7,7 @@
   <title>Reis Barbearia | Corte e Barba nas Caldas da Rainha</title>
   <meta name="description" content="Reis Barbearia, nas Caldas da Rainha: corte de cabelo, degradê, taper fade e barba. Vê os nossos serviços, trabalho e avaliações. Marcar online é rápido." />
   <link rel="icon" href="assets/logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="assets/fonts/fonts.css" rel="stylesheet" />
 
   <!-- daisyUI 5 + Tailwind CSS 4 (CDN, no build step) -->
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
@@ -58,6 +56,10 @@
     /* Telemóvel/tablet: uma coluna, mapa no fim (depois dos contactos) */
     @media (max-width: 1023px) { .location { grid-template-columns: 1fr; } .location__map { order: 1; } }
     .location__map iframe { position: absolute; inset: 0; margin: auto; width: 75%; height: 75%; border: 0; }
+    .location__map-load { position: absolute; inset: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; background: transparent; border: 0; color: rgba(255,255,255,.7); font-size: 13px; text-align: center; cursor: pointer; }
+    .location__map-btn { padding: 16px 32px; border: 1px solid #fcc83d; color: #fcc83d; font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; transition: background-color .2s, color .2s; }
+    .location__map-load:hover .location__map-btn { background: #fcc83d; color: #050505; }
+    .location__map-load:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
     .location__info { display: flex; flex-direction: column; justify-content: center; padding: clamp(56px, 9vh, 110px) clamp(20px, 5vw, 64px); }
 
     .location .eyebrow { margin: 0 0 18px; font-size: 12px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: #fcc83d; }
@@ -227,7 +229,11 @@
   <!-- CONTACTOS -->
   <section class="location" id="contactos" aria-labelledby="loc-t">
     <div class="location__map">
-      <iframe src="https://maps.google.com/maps?q={{ (contact.street + ", " + contact.postalCity) | urlencode }}&z=16&output=embed" title="Mapa Reis Barbearia" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <!-- O mapa só é pedido à Google depois de o visitante clicar. -->
+      <button type="button" class="location__map-load" data-map-src="https://maps.google.com/maps?q={{ (contact.street + ", " + contact.postalCity) | urlencode }}&z=16&output=embed">
+        <span class="location__map-btn">Ver mapa</span>
+        <span>O mapa é carregado a partir do Google Maps.</span>
+      </button>
     </div>
 
     <div class="location__info">
@@ -382,6 +388,17 @@
     document.getElementById('galNext').addEventListener('click', () => galGo(galPage() + 1));
     gal.addEventListener('scroll', galDraw, { passive: true });
     addEventListener('resize', galDraw); galDraw();
+
+    // Mapa: só carrega depois do clique
+    const mapLoad = document.querySelector('[data-map-src]');
+    mapLoad.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.src = mapLoad.dataset.mapSrc;
+      frame.title = 'Mapa Reis Barbearia';
+      frame.referrerPolicy = 'no-referrer-when-downgrade';
+      mapLoad.replaceWith(frame);
+      frame.focus();
+    });
 
     // Animação fade-up
     const io = new IntersectionObserver(es => es.forEach(e => {
