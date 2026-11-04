@@ -41,16 +41,16 @@
       "alt": "Corte texturizado com degradê"
     },
     {
-      "image": "assets/galeria/degrade-com-risca-e-desenho.jpg",
-      "alt": "Degradê com risca e desenho"
-    },
-    {
       "image": "assets/galeria/corte-infantil-com-desenho.jpg",
       "alt": "Corte infantil com desenho"
     },
     {
       "image": "assets/galeria/corte-infantil-em-tigela.jpg",
       "alt": "Corte infantil em tigela"
+    },
+    {
+      "image": "assets/galeria/degrade-com-risca-e-desenho.jpg",
+      "alt": "Degradê com risca e desenho"
     },
     {
       "image": "assets/galeria/taper-fade-com-contorno.jpg",
