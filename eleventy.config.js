@@ -7,6 +7,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/cookie-consent.js");
   eleventyConfig.addPassthroughCopy("src/politica-de-cookies.html");
   eleventyConfig.addPassthroughCopy("src/politica-de-privacidade.html");
+  eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
   eleventyConfig.addPassthroughCopy("src/sitemap.xml");
 

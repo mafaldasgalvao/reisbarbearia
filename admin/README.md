@@ -27,7 +27,7 @@ You need a free Cloudflare account.
    npx wrangler deploy
    npx wrangler secret put GITHUB_TOKEN
    ```
-3. **Set up Access:** in Cloudflare, go to **Workers & Pages → reis-barbearia-painel → Settings → Domains & Routes**, and turn on **Cloudflare Access** for the `workers.dev` address. Allow only the shop's email addresses, and use **One-time PIN** as the login method.
+3. **Set up Access:** in Cloudflare Zero Trust, add a self-hosted Access application for `admin.reisbarbearia.com`. Allow only the shop's email addresses, and use **One-time PIN** as the login method.
 4. **Connect the Worker to Access:** copy the team domain and the **Application Audience (AUD) Tag** into `wrangler.toml` as `ACCESS_TEAM_DOMAIN` and `ACCESS_AUD`, then run `npx wrangler deploy` again.
 
 Until step 4 is done, the Worker refuses every request.
