@@ -1,0 +1,20 @@
+{
+  "name": "Allison",
+  "role": "Barbeiro & Fundador",
+  "paragraphs": [
+    {
+      "text": "Por trás de cada corte na Reis Barbearia, nas Caldas da Rainha, está o Allison. Do degradê mais limpo ao desenho mais detalhado, cada cliente sai da cadeira com um corte pensado para si."
+    },
+    {
+      "text": "Um espaço descontraído, atendimento próximo e atenção ao detalhe. Assim trabalhamos na Reis."
+    }
+  ],
+  "mainPhoto": {
+    "image": "assets/galeria/barbeiro-com-cliente-na-reis-barbearia.jpg",
+    "alt": "Allison com um cliente na Reis Barbearia"
+  },
+  "secondPhoto": {
+    "image": "assets/galeria/barbeiro-a-aparar-a-barba-de-um-cliente.jpg",
+    "alt": "Allison a aparar a barba de um cliente"
+  }
+}

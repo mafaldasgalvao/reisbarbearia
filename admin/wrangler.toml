@@ -1,0 +1,17 @@
+name = "reis-barbearia-painel"
+main = "src/worker.js"
+compatibility_date = "2025-09-01"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = true
+
+[vars]
+GITHUB_REPO = "mafaldasgalvao/reisbarbearia"
+GITHUB_BRANCH = "main"
+# Preencher depois de criar a aplicação no Cloudflare Access (ver README.md):
+# ACCESS_TEAM_DOMAIN = "https://<a-tua-equipa>.cloudflareaccess.com"
+# ACCESS_AUD = "<Application Audience (AUD) Tag>"
+
+# O GITHUB_TOKEN é um segredo: `npx wrangler secret put GITHUB_TOKEN`, nunca neste ficheiro.

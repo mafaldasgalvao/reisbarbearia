@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Painel | Reis Barbearia</title>
+  <link rel="icon" href="logo.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="top">
+    <img src="logo.svg" alt="Reis Barbearia" class="logo" />
+    <div class="session">
+      <span id="email" class="email"></span>
+      <a href="/cdn-cgi/access/logout">Sair</a>
+    </div>
+  </header>
+  <nav id="tabs" class="tabs" aria-label="Secções do painel"></nav>
+  <main id="content" class="content"><p class="muted">A carregar…</p></main>
+  <footer id="bar" class="bar" hidden>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <div class="bar-actions">
+      <button type="button" id="discard" class="btn">Anular</button>
+      <button type="button" id="save" class="btn btn-primary">Guardar</button>
+    </div>
+  </footer>
+  <noscript>O painel precisa de JavaScript.</noscript>
+</body>
+</html>

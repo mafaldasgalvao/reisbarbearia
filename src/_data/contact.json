@@ -1,0 +1,21 @@
+{
+  "phone": "+351 960 116 858",
+  "street": "Rua Fonte do Pinheiro 8",
+  "postalCity": "2500-203 Caldas da Rainha",
+  "country": "Portugal",
+  "hours": [
+    {
+      "days": "Segunda — Sexta",
+      "value": "10:00 — 20:00"
+    },
+    {
+      "days": "Sábado",
+      "value": "09:00 — 19:00"
+    },
+    {
+      "days": "Domingo",
+      "value": "Encerrado"
+    }
+  ],
+  "bookingUrl": "https://www.fresha.com/pt-PT/a/reis-barbearia-caldas-da-rainha-rua-do-pinheiro-8-vqa1vo8s"
+}

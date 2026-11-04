@@ -1,0 +1,130 @@
+{
+  "categories": [
+    {
+      "id": "corte",
+      "label": "Corte",
+      "services": [
+        {
+          "name": "Corte Adulto Social",
+          "duration": "1h",
+          "price": 12,
+          "offerItemId": "s:21295258"
+        },
+        {
+          "name": "Corte Americano / Taper Fade",
+          "duration": "1h",
+          "price": 12,
+          "offerItemId": "s:22587067"
+        },
+        {
+          "name": "Corte Degradê Zero",
+          "duration": "1h",
+          "price": 13,
+          "offerItemId": "s:21295262"
+        },
+        {
+          "name": "Corte Degradê Shaver-0",
+          "duration": "1h",
+          "price": 14,
+          "offerItemId": "s:21295265"
+        },
+        {
+          "name": "Corte Infantil",
+          "duration": "1h",
+          "price": 12,
+          "offerItemId": "s:21295253"
+        },
+        {
+          "name": "Corte Social + Barba",
+          "duration": "1h",
+          "price": 18,
+          "offerItemId": "s:22563753"
+        },
+        {
+          "name": "Degradê + Barba",
+          "duration": "1h",
+          "price": 20,
+          "offerItemId": "s:21295321"
+        },
+        {
+          "name": "Barba",
+          "duration": "1h",
+          "price": 7,
+          "offerItemId": "s:21295266"
+        },
+        {
+          "name": "Contorno",
+          "duration": "15 min",
+          "price": 5,
+          "offerItemId": "s:21295277"
+        }
+      ]
+    },
+    {
+      "id": "higiene",
+      "label": "Higiene",
+      "services": [
+        {
+          "name": "Depilação do nariz na cera",
+          "duration": "15 min",
+          "price": 5,
+          "offerItemId": "s:21295292"
+        },
+        {
+          "name": "Depilação das orelhas na cera",
+          "duration": "15 min",
+          "price": 5,
+          "offerItemId": "s:21295302"
+        }
+      ]
+    },
+    {
+      "id": "quimica",
+      "label": "Descoloração & Química",
+      "services": [
+        {
+          "name": "Pintura / Pigmentar",
+          "duration": "30 min",
+          "price": 5,
+          "offerItemId": "s:21295272"
+        },
+        {
+          "name": "Madeixas Brancas / Platinado",
+          "duration": "1h30",
+          "price": 25,
+          "offerItemId": "s:21295313"
+        },
+        {
+          "name": "Progressiva",
+          "duration": "1h",
+          "price": 30,
+          "offerItemId": "s:21295279"
+        },
+        {
+          "name": "Platinado Total",
+          "duration": "2h",
+          "price": 40,
+          "offerItemId": "s:21295319"
+        }
+      ]
+    },
+    {
+      "id": "protese",
+      "label": "Prótese Capilar",
+      "services": [
+        {
+          "name": "Manutenção de Prótese (completa)",
+          "duration": "1h30",
+          "price": 30,
+          "offerItemId": "s:22563723"
+        },
+        {
+          "name": "Prótese Capilar (colocada)",
+          "duration": "2h",
+          "price": 400,
+          "offerItemId": "s:22563702"
+        }
+      ]
+    }
+  ]
+}

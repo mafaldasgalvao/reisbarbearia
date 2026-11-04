@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PORT="${PORT:-8000}"
+cd "$(dirname "$0")/.."
+
+[ -d node_modules ] || npm install
+echo "Site:   http://localhost:$PORT"
+echo "Painel: http://localhost:$PORT/admin/"
+exec npx eleventy --serve --port="$PORT"

@@ -1,0 +1,64 @@
+{
+  "photos": [
+    {
+      "image": "assets/galeria/low-fade-com-topo-curto.jpg",
+      "alt": "Low fade com topo curto"
+    },
+    {
+      "image": "assets/galeria/barbeiro-a-aparar-a-barba-de-um-cliente.jpg",
+      "alt": "Barbeiro a aparar a barba de um cliente"
+    },
+    {
+      "image": "assets/galeria/fade-com-caracois-no-topo.jpg",
+      "alt": "Fade com caracóis no topo"
+    },
+    {
+      "image": "assets/galeria/desenho-na-nuca-com-degrade.jpg",
+      "alt": "Desenho na nuca com degradê"
+    },
+    {
+      "image": "assets/galeria/degrade-com-risca-desenhada.jpg",
+      "alt": "Degradê com risca desenhada"
+    },
+    {
+      "image": "assets/galeria/fade-com-cabelo-afro-texturizado.jpg",
+      "alt": "Fade com cabelo afro texturizado"
+    },
+    {
+      "image": "assets/galeria/corte-com-franja-texturizada.jpg",
+      "alt": "Corte com franja texturizada"
+    },
+    {
+      "image": "assets/galeria/high-fade-classico.jpg",
+      "alt": "High fade clássico"
+    },
+    {
+      "image": "assets/galeria/degrade-zero-com-barba.jpg",
+      "alt": "Degradê zero com barba"
+    },
+    {
+      "image": "assets/galeria/corte-texturizado-com-degrade.jpg",
+      "alt": "Corte texturizado com degradê"
+    },
+    {
+      "image": "assets/galeria/degrade-com-risca-e-desenho.jpg",
+      "alt": "Degradê com risca e desenho"
+    },
+    {
+      "image": "assets/galeria/corte-infantil-com-desenho.jpg",
+      "alt": "Corte infantil com desenho"
+    },
+    {
+      "image": "assets/galeria/corte-infantil-em-tigela.jpg",
+      "alt": "Corte infantil em tigela"
+    },
+    {
+      "image": "assets/galeria/taper-fade-com-contorno.jpg",
+      "alt": "Taper fade com contorno"
+    },
+    {
+      "image": "assets/galeria/barbeiro-com-cliente-na-reis-barbearia.jpg",
+      "alt": "Barbeiro com cliente na Reis Barbearia"
+    }
+  ]
+}
